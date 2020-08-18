@@ -1,0 +1,222 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple_voting_app</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="styles.css" />
+    
+  <style>
+
+  .general{
+    width: 75%;
+    background: black;
+    display:flex;
+    align-items: center;
+
+    gap:20px;
+    justify-content: center;
+    margin:0 auto;
+    margin-top: 4rem;
+    height: 250px;
+
+  }
+
+  .party{ 
+    text-align: center;
+    width: 200px;
+    height: 150px;
+    background: white;
+
+  }
+
+  .party h3{
+    padding-top: 1rem;
+  }
+
+   .party p{
+    font-size: 18px;
+    color:green;
+    font-weight: bold;
+  }
+
+  .button{
+    display: flex;
+    width: 75%;
+    gap:10px;
+    justify-content: center;
+    margin:0 auto;
+  }
+
+  .vote{
+    width: 200px;
+    padding:5px;
+  }
+  #instuction_text{
+     width: 75%;
+     color:white;
+    text-align: center;
+    padding: 15px;
+    background:red;
+    margin:0 auto;
+    margin-top:10px;
+    font-size: 18px;
+
+  
+
+  }
+
+  .button{
+    margin-top:10px;
+  }
+    
+  </style>
+   
+  </head>
+  <body>
+
+    <div class="general">
+      <div class="party">
+        <h3 style="color:red">PDP</h3>
+        <p id="pdp" class="pdp"></p>
+        
+      </div>
+
+      <div class="party">
+        <h3>APC</h3>
+        <p id="apc" class="pdp"></p>
+        
+      </div>
+      <div class="party">
+        <h3>ANPP</h3>
+        <p id="anpp" class="pdp"></p>
+        
+      </div>
+      <div class="party">
+        <h3>AD</h3>
+        <p id="ad" class="pdp"></p>
+        
+      </div>
+      
+    </div>
+    <div class="instruction">
+       <p id="instuction_text"  ></p>
+    </div>
+
+    
+       <form  action="E-voting_System.php" method="post">
+       <div class="button">
+      <input data-mode="pdp" type="submit" name="pdp" id="vote_pdp"  class="vote" value="PDP" onclick="this.disabled=true;"  ondblclick="No()"   style="background-color: red; color: white">
+      <input data-mode="apc" type="submit"  name="" id="vote_apc" class="vote" value="APC" onclick="this.disabled=true;" ondblclick="apcNo()" style="background-color: green; color: white">
+      <input data-mode="anpp" type="submit" name="" id="vote_anpp" class="vote" value="ANPP" onclick="this.disabled=true;" ondblclick="anppNo()" style="background-color: grey; color: white">
+      <input  data-mode="ad" type="submit" name="" id="vote_ad" class="vote" value="AD" onclick="this.disabled=true;" ondblclick="adNo()" style="background-color: purple; color: white">
+      </div>
+       </form>
+    
+      <script>
+       let btn = document.getElementsByClassName('vote');
+       for (var i = 0; i<btn.length; i++) {
+        btn[i].addEventListener('click', function(){
+          let mode = this.dataset.mode;
+
+          console.log('something is clicked',mode)
+          alert('Your Vote has been casted!')
+           
+          setVote(mode)
+          
+        })
+         
+       }
+       
+     var pdp = 0;
+
+     var apc = 0;
+
+     var anpp = 0;
+     var ad = 0;
+
+       function setVote(mode){
+        
+         
+         if(mode=='pdp'){
+          
+          pdp++
+
+          document.getElementById('pdp').innerText =pdp + " Vote";
+          document.getElementById('vote_apc').style.visibility ="hidden";
+          document.getElementById('vote_anpp').style.visibility ="hidden";
+          document.getElementById('vote_ad').style.visibility ="hidden";
+         }
+
+         if(mode=='apc'){
+          
+          apc++
+          document.getElementById('apc').innerText =apc + " Vote";
+
+           document.getElementById('vote_pdp').style.visibility ="hidden";
+          document.getElementById('vote_anpp').style.visibility ="hidden";
+          document.getElementById('vote_ad').style.visibility ="hidden";
+
+
+          
+         }
+
+         if(mode=='anpp'){
+          
+          anpp++
+
+          document.getElementById('anpp').innerText =anpp + " Vote";
+
+           document.getElementById('vote_apc').style.visibility ="hidden";
+          document.getElementById('vote_pdp').style.visibility ="hidden";
+          document.getElementById('vote_ad').style.visibility ="hidden";
+          
+         }
+
+         if(mode=='ad'){
+          
+          ad++
+          document.getElementById('ad').innerText = ad + " Vote";
+           document.getElementById('vote_apc').style.visibility ="hidden";
+          document.getElementById('vote_anpp').style.visibility ="hidden";
+          document.getElementById('vote_pdp').style.visibility ="hidden";
+         }
+
+       }
+       
+        function No(){
+        document.getElementById('pdp').innerText = " ";
+         pdp =0
+        document.getElementById('instuction_text').innerText="You can not vote twice"
+
+      }
+
+     function apcNo(){
+        document.getElementById('apc').innerText = " ";
+         apc =0
+        document.getElementById('instuction_text').innerText="You can not vote twice"
+
+      }
+
+      function anppNo(){
+        document.getElementById('anpp').innerText = " ";
+         anpp =0
+        document.getElementById('instuction_text').innerText="You can not vote twice"
+
+      }
+
+      function adNo(){
+        document.getElementById('ad').innerText = " ";
+         ad =0
+        document.getElementById('instuction_text').innerText="You can not vote twice"
+
+      }
+
+      </script>
+  </body>
+
+
+</html>
